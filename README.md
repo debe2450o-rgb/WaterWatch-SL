@@ -27,11 +27,11 @@ WaterWatch SL provides a simple, low-bandwidth process to:
 - [IPO design](docs/ipo-design.md)
 - [Requirements analysis](docs/requirements-analysis.md)
 - [Flowgorithm flowchart source](diagrams/waterwatch-flowchart.fprg)
-
-Open `diagrams/waterwatch-flowchart.fprg` with [Flowgorithm](http://www.flowgorithm.org/) to view and edit the native flowchart.
 - [Presentation outline](docs/presentation-outline.md)
 - [Meeting minutes](minutes/meeting-1.md)
 - [Research sources](docs/sources.md)
+
+Open `diagrams/waterwatch-flowchart.fprg` with [Flowgorithm](http://www.flowgorithm.org/) to view and edit the native flowchart.
 
 ## Core algorithm
 
