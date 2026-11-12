@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+  <attributes>
+    <attribute name="name" value="WaterWatch SL - Water Point Repair Prioritisation"/>
+    <attribute name="authors" value="WaterWatch SL Project Group"/>
+    <attribute name="about" value="Flowgorithm design for reporting water point failures and prioritising safe referrals in Sierra Leone"/>
+  </attributes>
+  <function name="Main" type="None" variable="">
+    <parameters/>
+    <body>
+      <declare name="community, waterPointId, safetyRisk, another" type="String" array="False" size=""/>
+      <declare name="peopleAffected, daysUnavailable, score, peoplePoints, riskPoints, downtimePoints, alternativePoints" type="Integer" array="False" size=""/>
+      <declare name="hasSafeAlternative" type="Boolean" array="False" size=""/>
+      <assign variable="another" expression="&quot;YES&quot;"/>
+      <while expression="another = &quot;YES&quot;">
+        <output expression="&quot;Enter the community or chiefdom:&quot;" newline="True"/>
+        <input variable="community"/>
+        <output expression="&quot;Enter the water-point ID:&quot;" newline="True"/>
+        <input variable="waterPointId"/>
+        <output expression="&quot;Enter people affected:&quot;" newline="True"/>
+        <input variable="peopleAffected"/>
+        <output expression="&quot;Enter days unavailable:&quot;" newline="True"/>
+        <input variable="daysUnavailable"/>
+        <output expression="&quot;Enter safety risk: NONE, POSSIBLE, or CONFIRMED:&quot;" newline="True"/>
+        <input variable="safetyRisk"/>
+        <output expression="&quot;Is there a confirmed safe alternative? TRUE or FALSE:&quot;" newline="True"/>
+        <input variable="hasSafeAlternative"/>
+        <if expression="peopleAffected &lt; 0 or daysUnavailable &lt; 0">
+          <then>
+            <output expression="&quot;Invalid input: people and days cannot be negative.&quot;" newline="True"/>
+          </then>
+          <else>
+            <if expression="peopleAffected &gt;= 500">
+              <then>
+                <assign variable="peoplePoints" expression="35"/>
+              </then>
+              <else>
+                <if expression="peopleAffected &gt;= 200">
+                  <then>
+                    <assign variable="peoplePoints" expression="25"/>
+                  </then>
+                  <else>
+                    <if expression="peopleAffected &gt;= 50">
+                      <then>
+                        <assign variable="peoplePoints" expression="15"/>
+                      </then>
+                      <else>
+                        <assign variable="peoplePoints" expression="5"/>
+                      </else>
+                    </if>
+                  </else>
+                </if>
+              </else>
+            </if>
+            <if expression="safetyRisk = &quot;CONFIRMED&quot;">
+              <then>
+                <assign variable="riskPoints" expression="30"/>
+              </then>
+              <else>
+                <if expression="safetyRisk = &quot;POSSIBLE&quot;">
+                  <then>
+                    <assign variable="riskPoints" expression="15"/>
+                  </then>
+                  <else>
+                    <assign variable="riskPoints" expression="0"/>
+                  </else>
+                </if>
+              </else>
+            </if>
+            <if expression="daysUnavailable &gt; 30">
+              <then>
+                <assign variable="downtimePoints" expression="20"/>
+              </then>
+              <else>
+                <if expression="daysUnavailable &gt;= 8">
+                  <then>
+                    <assign variable="downtimePoints" expression="15"/>
+                  </then>
+                  <else>
+                    <if expression="daysUnavailable &gt;= 2">
+                      <then>
+                        <assign variable="downtimePoints" expression="10"/>
+                      </then>
+                      <else>
+                        <assign variable="downtimePoints" expression="5"/>
+                      </else>
+                    </if>
+                  </else>
+                </if>
+              </else>
+            </if>
+            <if expression="hasSafeAlternative = True">
+              <then>
+                <assign variable="alternativePoints" expression="0"/>
+              </then>
+              <else>
+                <assign variable="alternativePoints" expression="15"/>
+              </else>
+            </if>
+            <assign variable="score" expression="peoplePoints + riskPoints + downtimePoints + alternativePoints"/>
+            <output expression="&quot;Water-point report processed for &quot; + community + &quot; / &quot; + waterPointId" newline="True"/>
+            <output expression="&quot;Priority score: &quot; + score" newline="True"/>
+            <if expression="score &gt;= 75">
+              <then>
+                <output expression="&quot;Priority: CRITICAL - refer immediately.&quot;" newline="True"/>
+              </then>
+              <else>
+                <if expression="score &gt;= 55">
+                  <then>
+                    <output expression="&quot;Priority: HIGH - refer within 48 hours.&quot;" newline="True"/>
+                  </then>
+                  <else>
+                    <if expression="score &gt;= 30">
+                      <then>
+                        <output expression="&quot;Priority: MEDIUM - schedule within 7 days.&quot;" newline="True"/>
+                      </then>
+                      <else>
+                        <output expression="&quot;Priority: LOW - monitor or use routine maintenance.&quot;" newline="True"/>
+                      </else>
+                    </if>
+                  </else>
+                </if>
+              </else>
+            </if>
+          </else>
+        </if>
+        <output expression="&quot;Enter another report? YES or NO:&quot;" newline="True"/>
+        <input variable="another"/>
+      </while>
+    </body>
+  </function>
+</flowgorithm>

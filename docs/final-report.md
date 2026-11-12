@@ -157,7 +157,7 @@ This example demonstrates the format only; values must come from user input in a
 
 ## 9. Flowchart design
 
-The flowchart is provided as Mermaid source in `diagrams/waterwatch-flowchart.mmd` and as a rendered PNG. It shows the main loop, validation decision, score calculation, alternative ranking, referral output, and restart decision.
+The flowchart is provided as a native Flowgorithm file in `diagrams/waterwatch-flowchart.fprg`. Open the `.fprg` file in Flowgorithm to view the editable flowchart. It shows the main loop, validation decision, score calculation, alternative assessment, referral output, and restart decision.
 
 ## 10. Open-source, Digital Public Good, and SDG alignment
 

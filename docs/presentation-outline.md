@@ -22,7 +22,7 @@ Validate → score four factors → classify → rank alternatives → create re
 
 ## Slide 6 — Flowchart and modules
 
-Show the Mermaid flowchart and explain intake, validation, scoring, priority, alternative selection, and referral modules.
+Show the native Flowgorithm flowchart and explain intake, validation, scoring, priority, alternative selection, and referral modules.
 
 ## Slide 7 — Open source, DPG, and SDGs
 
