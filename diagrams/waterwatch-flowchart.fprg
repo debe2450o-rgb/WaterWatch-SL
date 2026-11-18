@@ -98,8 +98,8 @@
               </else>
             </if>
             <assign variable="score" expression="peoplePoints + riskPoints + downtimePoints + alternativePoints"/>
-            <output expression="&quot;Water-point report processed for &quot; + community + &quot; / &quot; + waterPointId" newline="True"/>
-            <output expression="&quot;Priority score: &quot; + score" newline="True"/>
+            <output expression="&quot;Water-point report processed for &quot; &amp; community &amp; &quot; / &quot; &amp; waterPointId" newline="True"/>
+            <output expression="&quot;Priority score: &quot; &amp; score" newline="True"/>
             <if expression="score &gt;= 75">
               <then>
                 <output expression="&quot;Priority: CRITICAL - refer immediately.&quot;" newline="True"/>
